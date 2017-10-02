@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
+import Book from './Book';
 
 class ListBooks extends Component {
 
@@ -9,12 +10,18 @@ class ListBooks extends Component {
   }
 
   state = {
-    
+    books:[],
+    search: '',
+    results: []
   }
 
   render() {
 
-    const { books } = this.props
+    const { books, onHandleChange} = this.props
+    // filter the books based on shelf value
+    let currentBooks = books.filter((book) => book.shelf === "currentlyReading");
+    let readBooks = books.filter((book) => book.shelf === "read");
+    let wantBooks = books.filter((book) => book.shelf === "wantToRead");
 
     return (
       <div className="list-books">
@@ -26,51 +33,28 @@ class ListBooks extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {books.map((book) => (
-                  <li key={book.id} >
-                    <div className="book">
-                      <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                        <div className="book-shelf-changer">
-                          <select onChange={(event) => this.updateQuery(event.target.value)}>
-                            <option value="none" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="book-title">{book.title}</div>
-                      <div className="book-authors">{book.authors}</div>
-                    </div>
-                  </li>
-                  ))}
-                </ol>
+              <Book books={currentBooks} 
+                    onHandleChange={onHandleChange}/>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {/* Books wanted to read here */}
-                </ol>
+                <Book books={wantBooks} 
+                      onHandleChange={onHandleChange}/>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {/* Books already read here */}
-                </ol>
+                <Book books={readBooks} 
+                      onHandleChange={onHandleChange}/>
               </div>
             </div>
           </div>
         </div>
         <div className="open-search">
           <Link to='/search'>Add a book</Link>
-          {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>*/}
         </div>
       </div>
     )
