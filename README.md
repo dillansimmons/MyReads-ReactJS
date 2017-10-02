@@ -1,18 +1,20 @@
 # Dillan Simmons : MyReads Project
 
+READY FOR REVIEW :metal:
+
 This is Dillan's final react 'My Reads' Project built on the the starter template project provided by Udacity's React Fundamentals course.
 
-[x] - installs easily
-[x] - has readme
-[x] - main page has 3 shelves
-[x] - books have control to move page to page
-[x] - on refresh view is the same
-[x] - search functions
-[x] - read control works on search
-[x] - read state is persistent across both pages
-[x] - routing works
-[ ] - component functionality is all kosher
-[x] - proper jsx
+* [x] - installs easily
+* [x] - has readme
+* [x] - main page has 3 shelves
+* [x] - books have control to move page to page
+* [x] - on refresh view is the same
+* [x] - search functions
+* [x] - read control works on search
+* [x] - read state is persistent across both pages
+* [x] - routing works
+* [ ] - component / state / functionality is all kosher
+* [x] - proper jsx
 
 ## Install
 
